@@ -1,16 +1,14 @@
 from unittest import TestCase
-import os
 from fcoder import CoderClient
-from dotenv import load_dotenv
 
-load_dotenv()
+coder_server_auth_token = "241b2687-e3f2-43b5-826b-cb91e8be6b08"
 
 class TestCoderClient(TestCase):
     def test_code_interpreter(self):
         client = CoderClient(
-            server_host=os.environ["CODER_SERVER_HOST"],
-            server_port=int(os.environ["CODER_SERVER_PORT"]),
-            auth_token=os.environ["AUTH_TOKEN"]
+            server_host="127.0.0.1",
+            server_port=8888,
+            auth_token=coder_server_auth_token
         )
         result = client.code_interpreter("print('hello')")
         self.assertIn(
